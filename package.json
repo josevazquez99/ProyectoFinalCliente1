@@ -13,7 +13,7 @@
     "@astrojs/check": "^0.9.4",
     "@astrojs/react": "^3.6.3",
     "@astrojs/tailwind": "^5.1.2",
-    "astro": "^4.16.13",
+    "astro": "^4.16.14",
     "axios": "^1.7.7",
     "proyectofinalcliente1": "file:",
     "react": "^18.3.1",

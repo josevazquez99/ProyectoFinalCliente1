@@ -6,10 +6,26 @@ const contactDetails = {
 };
 ---
 <div class="w-[747px]">
-  <h2 class="text-black text-3xl font-bold">Contact Information</h2>
-  <ul class="text-black text-xl font-normal">
-    <li>Email: <a href={`mailto:${contactDetails.email}`} class="text-blue-600">{contactDetails.email}</a></li>
-    <li>Phone: {contactDetails.phone}</li>
-    <li>LinkedIn: <a href={contactDetails.linkedin} target="_blank" class="text-blue-600">{contactDetails.linkedin}</a></li>
-  </ul>
+  {/* Botones al principio */}
+  <div class="flex justify-between mb-4">
+    <button class="px-6 py-3 bg-gray-300 text-black rounded hover:bg-gray-400">Name</button>
+    <button class="px-6 py-3 bg-gray-300 text-black rounded hover:bg-gray-400">Phone</button>
+    <button class="px-6 py-3 bg-gray-300 text-black rounded hover:bg-gray-400">Email</button>
+    <button class="px-6 py-3 bg-blue-500 text-white rounded hover:bg-blue-700">CONTACT US</button>
+  </div>
+
+  {/* Contact Information with Image */}
+  <div class="flex items-start justify-between">
+    {/* Contact List */}
+    <ul class="text-left text-black text-xl font-normal">
+      <li class="mb-2">Email: <a href={`mailto:${contactDetails.email}`} class="text-blue-600">{contactDetails.email}</a></li>
+      <li class="mb-2">Phone: {contactDetails.phone}</li>
+      <li class="mb-2">LinkedIn: <a href={contactDetails.linkedin} target="_blank" class="text-blue-600">{contactDetails.linkedin}</a></li>
+    </ul>
+
+    {/* Image */}
+    <div class="ml-6">
+      <img src="/img/mapa.png" alt="Contact Image" class="w-[300px] h-auto rounded-lg shadow-md" />
+    </div>
+  </div>
 </div>

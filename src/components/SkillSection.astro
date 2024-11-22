@@ -1,11 +1,10 @@
 ---
+// SkillSection.astro
+
 const { name, image } = Astro.props;
 ---
 
 <div class="w-40 h-64 bg-gray-100 rounded-xl shadow-lg border border-gray-300 p-4 flex flex-col items-center justify-between">
-  <!-- Título -->
   <h2 class="text-lg font-semibold text-gray-800 mb-4">{name}</h2>
-
-  <!-- Imagen -->
   <img src={image} class="w-24 h-24 object-cover rounded-full border-4 border-gray-300 shadow-md mb-4" />
 </div>
