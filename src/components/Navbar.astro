@@ -1,0 +1,29 @@
+---
+// Navbar.astro
+const { logoSrc = '/img/logo.png', userImgSrc = '/img/usuario.png' } = Astro.props;
+---
+
+<header class="bg-white text-black shadow-lg py-4">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+    <!-- Navegación -->
+    <nav class="flex items-center space-x-8">
+      <ul class="flex space-x-8">
+        <li><a href="/" class="text-xl hover:text-gray-600 transition-all duration-300">HOME</a></li>
+        <li><a href="#studies" class="text-xl hover:text-gray-600 transition-all duration-300">STUDIES</a></li>
+        <li><a href="#projects" class="text-xl hover:text-gray-600 transition-all duration-300">PROJECTS</a></li>
+      </ul>
+    </nav>
+
+    <!-- Logo -->
+    <div class="flex justify-center items-center flex-grow">
+      <img src={logoSrc} alt="Logo" class="h-16" />
+    </div>
+
+    <!-- Iconos y más enlaces -->
+    <ul class="flex space-x-8 items-center">
+      <li><a href="/contact" class="text-xl hover:text-gray-600 transition-all duration-300">CONTACT</a></li>
+      <li><a href="#skills" class="text-xl hover:text-gray-600 transition-all duration-300">SKILLS</a></li>
+      <li><img src={userImgSrc} alt="Usuario" class="h-12 rounded-full" /></li>
+    </ul>
+  </div>
+</header>

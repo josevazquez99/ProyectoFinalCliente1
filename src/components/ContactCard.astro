@@ -1,0 +1,15 @@
+---
+const contactDetails = {
+  email: "jose@example.com",
+  phone: "+34 123 456 789",
+  linkedin: "https://www.linkedin.com/in/jose-antonio-vazquez"
+};
+---
+<div class="w-[747px]">
+  <h2 class="text-black text-3xl font-bold">Contact Information</h2>
+  <ul class="text-black text-xl font-normal">
+    <li>Email: <a href={`mailto:${contactDetails.email}`} class="text-blue-600">{contactDetails.email}</a></li>
+    <li>Phone: {contactDetails.phone}</li>
+    <li>LinkedIn: <a href={contactDetails.linkedin} target="_blank" class="text-blue-600">{contactDetails.linkedin}</a></li>
+  </ul>
+</div>

@@ -1,0 +1,138 @@
+---
+import Navbar from '../components/Navbar.astro';
+import StudyCard from '../components/StudyCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SkillSection from '../components/SkillSection.astro';
+import ExperienceCard from '../components/ExperienceCard.astro';
+
+const testMode = true; // Establecer en `false` al desplegar
+
+const { searchParams } = new URL(Astro.request.url);
+const language = searchParams.get('lang') || 'en';  
+const data = language === 'es' ? await import('../../data_es.json') : await import('../../data.json');
+
+---
+
+<!DOCTYPE html>
+<html lang={language}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body class="bg-white text-gray-800 font-sans" style="font-family: 'Caladea', serif;">
+    <!-- Incluir el componente Navbar -->
+    <Navbar logoSrc="/img/logo.png" userImgSrc="/img/usuario.png" />
+
+    <main class="py-16">
+      <div class="max-w-7xl mx-auto px-6">
+        <!-- Contenedor principal con la imagen a la izquierda y el texto a la derecha -->
+        <div class="flex items-center space-x-12">
+          <!-- Imagen a la izquierda -->
+          <div class="flex-shrink-0 w-1/2">
+            <img src="/img/perfil.jpg" alt="Jose Antonio" class="w-full h-auto rounded-full object-cover" />
+          </div>
+
+          <!-- Texto a la derecha -->
+          <div class="flex-grow w-1/2">
+            <h1 class="text-4xl font-semibold mb-4">{data.name}</h1>
+            <p class="text-lg text-gray-700 mb-6">
+              {data.about}
+            </p>
+
+            <!-- Botón de Experiences -->
+            <a href="/experiences" class="inline-block bg-blue-500 text-white py-2 px-6 rounded-lg text-lg hover:bg-blue-600 transition-all duration-300">
+              {language === 'es' ? 'Experiencias' : 'Experiences'}
+            </a>
+          </div>
+        </div>
+
+        <!-- Sección STUDIES centrada -->
+        <section id="studies" class="mt-16 text-center">
+          <h2 class="text-3xl font-semibold mb-6">{language === 'es' ? 'ESTUDIOS' : 'STUDIES'}</h2>
+          
+          <!-- Imagen de puntos centrada -->
+          <div class="flex justify-center mb-8">
+            <img src="/img/puntos.png" alt="Points" class="w-10 h-10 rounded-full" />
+          </div>
+
+          <!-- Tarjetas de estudios dispuestas verticalmente y alargadas -->
+          <div class="flex flex-col gap-6">
+            {data.studies.map((studies) => (
+              <StudyCard 
+                title={studies.degree}
+                school={studies.university}
+                description={studies.description}
+                className="p-6 flex flex-col h-64 justify-between"
+                imageSrc={studies.image}
+              />
+            ))}
+          </div>
+        </section>
+         <!-- Sección PROYECTOS -->
+         <section id="projects" class="mt-16 text-center">
+          <h2 class="text-3xl font-semibold mb-6">{language === 'es' ? 'PROYECTOS' : 'PROJECTS'}</h2>
+          
+          <!-- Imagen de puntos centrada -->
+          <div class="flex justify-center mb-8">
+            <img src="/img/puntos.png" alt="Points" class="w-10 h-10 rounded-full" />
+          </div>
+
+          <!-- Tarjetas de proyectos -->
+          <div class="flex flex-col gap-6">
+            <ProjectCard/>
+          </div>
+          
+        </section>
+
+        <section id="skills" class="mt-16 text-center">
+          <h2 class="text-3xl font-semibold mb-6">
+            {language === 'es' ? 'HABILIDADES' : 'SKILLS'}
+          </h2>
+          
+          <!-- Imagen de puntos centrada -->
+          <div class="flex justify-center mb-8">
+            <img src="/img/puntos.png" alt="Points" class="w-10 h-10 rounded-full" />
+          </div>
+        
+          <!-- Tarjetas de habilidades dispuestas en una fila -->
+          <div class="flex flex-wrap justify-center gap-8">
+            {data.skills.map((skills) => (
+              <SkillSection
+                name={skills.name}
+                image={skills.image}
+              />
+            ))}
+          </div>
+        </section>
+        
+        <section id="experiences" class="mt-16 text-center">
+          <h2 class="text-3xl font-semibold mb-6">
+            {language === 'es' ? 'EXPERIENCIAS' : 'EXPERIENCES'}
+          </h2>
+          
+          <!-- Imagen de puntos centrada -->
+          <div class="flex justify-center mb-8">
+            <img src="/img/puntos.png" alt="Points" class="w-10 h-10 rounded-full" />
+          </div>
+        
+          <!-- Tarjetas de habilidades dispuestas en una fila -->
+          <div class="flex flex-wrap justify-center gap-8">
+            {data.experiences.map((experiences) => (
+              <ExperienceCard
+                name={experiences.name}
+                image={experiences.image}
+              />
+            ))}
+          </div>
+        </section>
+        
+        
+        
+      </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white text-center py-6 mt-16">
+      <p>&copy; 2024 {data.name}'s Portfolio | All Rights Reserved</p>
+    </footer>
+  </body>
+</html>
