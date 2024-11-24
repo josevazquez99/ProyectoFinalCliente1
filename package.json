@@ -18,7 +18,9 @@
     "proyectofinalcliente1": "file:",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tailwindcss": "^3.4.15",
-    "typescript": "^5.6.3"
+    "tailwindcss": "^3.4.15"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
   }
 }

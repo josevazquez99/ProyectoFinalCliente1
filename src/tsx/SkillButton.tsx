@@ -1,7 +1,16 @@
 import { useState } from 'react';
 
-const SkillButton = ({ initialSkills }) => {
-  const [skills, setSkills] = useState(initialSkills);
+interface Skill {
+  name: string;
+  image: string;
+}
+
+interface SkillButtonProps {
+  initialSkills: Skill[];
+}
+
+const SkillButton: React.FC<SkillButtonProps> = ({ initialSkills }) => {
+  const [skills, setSkills] = useState<Skill[]>(initialSkills);
 
   const changeSkills = () => {
     console.log('Button clicked');

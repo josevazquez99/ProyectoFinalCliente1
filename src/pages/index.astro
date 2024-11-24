@@ -1,10 +1,10 @@
 ---
 import Navbar from '../components/Navbar.astro';
 import StudyCard from '../components/StudyCard.astro';
-import ProjectCard from '../components/ProjectCard.astro';
 import ContactCard from '../components/ContactCard.astro';
 import ExperienceSection from '../components/ExperienceSection.astro';
-import SkillButton from '../jsx/SkillButton';
+import SkillButton from '../tsx/SkillButton';
+import ProjectList from '../tsx/ProjectList';
 const testMode = true; // Establecer en `false` al desplegar
 
 const { searchParams } = new URL(Astro.request.url);
@@ -19,7 +19,6 @@ const data = language === 'es' ? await import('../../data_es.json') : await impo
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="module" src="/src/jsx/main.jsx"></script>
 
   </head>
   <body class="bg-white text-gray-800 font-sans" style="font-family: 'Caladea', serif;">
@@ -82,7 +81,7 @@ const data = language === 'es' ? await import('../../data_es.json') : await impo
 
           <!-- Tarjetas de proyectos -->
           <div class="flex flex-col gap-6">
-            <ProjectCard/>
+            <ProjectList client:only="react"/>
           </div>
           
         </section>
