@@ -13,8 +13,8 @@ const data = language === 'es' ? await import('../../data_es.json') : await impo
 
 <Layout title={language === 'es' ? 'Portafolio de Jose Antonio Vázquez' : 'Jose Antonio Vázquez Portfolio'} data={data}>
   <!-- Contenido de la página -->
-  <div class="flex items-center space-x-12">
-    <div class="flex-shrink-0 w-1/2">
+  <div class="flex items-center space-x-12 max-w-screen-lg mx-auto">
+    <div class="flex-shrink-0 w-1/4">
       <img src="/img/perfil.jpg" alt="Jose Antonio" class="w-full h-auto rounded-full object-cover" />
     </div>
     <div class="flex-grow w-1/2">
@@ -25,7 +25,7 @@ const data = language === 'es' ? await import('../../data_es.json') : await impo
       </a>
     </div>
   </div>
-  
+
   <!-- Sección de Estudios -->
   <section id="studies" class="mt-16 text-center">
     <h2 class="text-3xl font-semibold mb-6">{language === 'es' ? 'ESTUDIOS' : 'STUDIES'}</h2>
