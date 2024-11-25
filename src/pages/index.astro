@@ -6,6 +6,7 @@ import ExperienceSection from '../components/ExperienceSection.astro';
 import SkillButton from '../components/SkillButton';
 import ProjectList from '../components/ProjectList';
 
+const testMode= true;
 const { searchParams } = new URL(Astro.request.url);
 const language = searchParams.get('lang') || 'en';  
 const data = language === 'es' ? await import('../../data_es.json') : await import('../../data.json');
