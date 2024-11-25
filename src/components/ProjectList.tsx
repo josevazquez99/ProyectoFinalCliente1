@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'; 
 
-// Definimos el tipo para el proyecto 
+// Definimos el tipo para el proyecto
 interface Project {
-    id: number;  
+    id: number;
     name: string;
     description: string;
     start_date: string;
@@ -17,7 +18,7 @@ const Projects = () => {
     // URL de la API
     const url: string = "http://localhost:8080/api/v1/projects";
 
-    // Hacer la petición cuando cambie la página o el término de búsqueda
+    // Hacemos la petición cuando cambie la página o el término de búsqueda
     useEffect(() => {
         peti(page, searchTerm);
     }, [page, searchTerm]);
@@ -25,33 +26,30 @@ const Projects = () => {
     // Función para hacer la petición a la API usando el endpoint de búsqueda por nombre
     const peti = async (p = 0, search = '') => {
         if (search && search.length < 3) return;
-        // Si hay un término de búsqueda, hacer la petición con el endpoint 
-        const requestUrl = search 
-            ? `${url}/${search}`  // Buscamos por nombre
-            : `${url}?size=3&page=${p}`;  // Si no hay búsqueda, mostrar los proyectos paginados
+        const requestUrl = search
+            ? `${url}/${search}`
+            : `${url}?size=3&page=${p}`;
 
         const response = await fetch(requestUrl);
         const data = await response.json();
 
         if (search) {
-            // Si estamos buscando por nombre
             const project = data.data ? {
-                id: data.data.id,  
+                id: data.data.id,
                 name: data.data.name,
                 description: data.data.description,
                 start_date: data.data.start_date,
             } : null;
-            setPosts(project ? [project] : []);  
-            setTotalPages(1);  // No hay paginación en este caso, ya que estamos buscando por nombre
+            setPosts(project ? [project] : []);
+            setTotalPages(1);
         } else {
-            // Si no estamos buscando, normalizamos la respuesta para paginación
             setPosts(data.content.map((project: any) => ({
-                id: project.id,  
+                id: project.id,
                 name: project.name,
                 description: project.description,
                 start_date: project.start_date,
-            })) || []); 
-            setTotalPages(data.totalPages || 1); // Si no hay paginación, asignamos 1 página por defecto
+            })) || []);
+            setTotalPages(data.totalPages || 1);
         }
     };
 
@@ -62,21 +60,12 @@ const Projects = () => {
         });
 
         if (response.ok) {
-            // Eliminar el proyecto de la lista localmente después de la eliminación
             setPosts(posts.filter(project => project.id !== id));
         } else {
             console.error('Error al eliminar el proyecto');
         }
     };
 
-    // Función para manejar la búsqueda al presionar "Enter"
-    const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
-            peti(page, searchTerm); // Realizamos la búsqueda cuando se presiona "Enter"
-        }
-    };
-
-    // Componente que muestra una card del proyecto
     const ProjectCard = ({ project, test = false }: { project: Project; test?: boolean }) => {
         return (
             <div className="bg-white p-4 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
@@ -88,7 +77,7 @@ const Projects = () => {
                 {test && (
                     <button
                         onClick={() => handleDelete(project.id)}
-                        className="mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                        className="mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-all duration-300"
                     >
                         Eliminar
                     </button>
@@ -99,15 +88,15 @@ const Projects = () => {
 
     return (
         <>
-            {/* Barra de búsqueda centrada y pequeña */}
+            {/* Barra de búsqueda centrada */}
             <div className="mb-6 flex justify-center">
                 <input
                     type="text"
                     placeholder="Buscar por nombre"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    onKeyDown={handleSearch} // Detectamos la tecla "Enter"
-                    className="w-full max-w-xs p-2 border border-gray-300 rounded-md"
+                    onKeyDown={(e) => e.key === 'Enter' && peti(page, searchTerm)} // Búsqueda al presionar "Enter"
+                    className="w-full max-w-xs p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
                 />
             </div>
 
@@ -118,26 +107,29 @@ const Projects = () => {
                 ))}
             </div>
 
-            {/* Botones de navegación */}
-            <div className="mt-6 flex justify-between items-center">
-                <button 
-                    onClick={() => setPage(page - 1)} 
+            {/* Botones de navegación con transiciones */}
+            <div className="mt-6 flex justify-center items-center space-x-4">
+                <button
+                    onClick={() => setPage(page - 1)}
                     disabled={page === 0}
-                    className="bg-blue-500 text-white px-4 py-2 rounded-md disabled:bg-gray-300"
+                    className="bg-blue-500 text-white px-6 py-3 rounded-lg disabled:bg-gray-300 hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
                 >
+                    <FaArrowLeft className="inline-block mr-2" />
                     Página anterior
                 </button>
 
                 {/* Mostramos el número de página actual */}
-                <b>{page + 1}</b>
+                <span className="text-lg font-semibold text-gray-700">
+                    Página {page + 1} de {totalPages}
+                </span>
 
-                {/* Botón de "Página siguiente" */}
-                <button 
-                    onClick={() => setPage(page + 1)} 
+                <button
+                    onClick={() => setPage(page + 1)}
                     disabled={posts.length === 0 || page === totalPages - 1}
-                    className="bg-blue-500 text-white px-4 py-2 rounded-md disabled:bg-gray-300"
+                    className="bg-blue-500 text-white px-6 py-3 rounded-lg disabled:bg-gray-300 hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
                 >
                     Página siguiente
+                    <FaArrowRight className="inline-block ml-2" />
                 </button>
             </div>
         </>
