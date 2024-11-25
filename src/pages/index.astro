@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import StudyCard from '../components/StudyCard.astro';
-import ContactCard from '../components/ContactCard.astro';
+import ContactCard from '../components/ContactCard.tsx';
 import ExperienceSection from '../components/ExperienceSection.astro';
 import SkillButton from '../components/SkillButton';
 import ProjectList from '../components/ProjectList';
@@ -96,7 +96,7 @@ const data = language === 'es' ? await import('../../data_es.json') : await impo
       <img src="/img/puntos.png" alt="Points" class="w-10 h-10 rounded-full" />
     </div>
     <div class="flex flex-wrap justify-center gap-8">
-      <ContactCard/>
+      <ContactCard client:only="react" />
     </div>
   </section>
 </Layout>
