@@ -24,6 +24,7 @@ const Projects = () => {
 
     // Función para hacer la petición a la API usando el endpoint de búsqueda por nombre
     const peti = async (p = 0, search = '') => {
+        if (search && search.length < 3) return;
         // Si hay un término de búsqueda, hacer la petición con el endpoint 
         const requestUrl = search 
             ? `${url}/${search}`  // Buscamos por nombre
@@ -75,6 +76,27 @@ const Projects = () => {
         }
     };
 
+    // Componente que muestra una card del proyecto
+    const ProjectCard = ({ project, test = false }: { project: Project; test?: boolean }) => {
+        return (
+            <div className="bg-white p-4 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                <h2 className="text-xl font-semibold text-gray-800">{project.name}</h2>
+                <p className="mt-2 text-gray-600">{project.description}</p>
+                <p className="mt-4 text-sm text-gray-500">
+                    <strong>Start Date: </strong>{project.start_date}
+                </p>
+                {test && (
+                    <button
+                        onClick={() => handleDelete(project.id)}
+                        className="mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                    >
+                        Eliminar
+                    </button>
+                )}
+            </div>
+        );
+    };
+
     return (
         <>
             {/* Barra de búsqueda centrada y pequeña */}
@@ -91,23 +113,9 @@ const Projects = () => {
 
             {/* Lista de proyectos */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {posts.map(({ id, name, description, start_date }, index) => {
-                    return (
-                        <div key={id} className="bg-white p-4 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                            <h2 className="text-xl font-semibold text-gray-800">{name}</h2>
-                            <p className="mt-2 text-gray-600">{description}</p>
-                            <p className="mt-4 text-sm text-gray-500">
-                                <strong>Start Date: </strong>{start_date}
-                            </p>
-                            <button
-                                onClick={() => handleDelete(id)} 
-                                className="mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
-                            >
-                                Eliminar
-                            </button>
-                        </div>
-                    );
-                })}
+                {posts.map((project) => (
+                    <ProjectCard key={project.id} project={project} test={true} />
+                ))}
             </div>
 
             {/* Botones de navegación */}
