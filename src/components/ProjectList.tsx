@@ -118,10 +118,10 @@ const Projects = () => {
                     Página anterior
                 </button>
 
-                {/* Mostramos el número de página actual */}
-                <span className="text-lg font-semibold text-gray-700">
-                    Página {page + 1} de {totalPages}
-                </span>
+                {/* Número de página actual con diseño personalizado */}
+                <div className="flex items-center justify-center bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold text-lg rounded-full w-12 h-12 shadow-md transform transition-transform duration-300 hover:scale-110">
+                    {page + 1}
+                </div>
 
                 <button
                     onClick={() => setPage(page + 1)}

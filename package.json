@@ -14,7 +14,7 @@
     "@astrojs/react": "^3.6.3",
     "@astrojs/tailwind": "^5.1.2",
     "@heroicons/react": "^2.2.0",
-    "astro": "^4.15.0",
+    "astro": "^4.14.0",
     "axios": "^1.7.7",
     "proyectofinalcliente1": "file:",
     "react": "^18.3.1",
