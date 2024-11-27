@@ -1,0 +1,67 @@
+{
+  "name": "Jose Antonio Vázquez",
+  "about": "Un apasionado desarrollador web con habilidades en JavaScript, Node.js y Astro. Siempre estoy buscando aprender y mejorar mis habilidades a través de proyectos prácticos.",
+  "studies": [
+    {
+      "degree": "BACHILLERATO (2016-2018)",
+      "university": "IES Miguel de Mañara(San José de la Rinconada,Sevilla)",
+      "description": "El Bachillerato es una etapa educativa postobligatoria que prepara a los estudiantes para acceder a estudios superiores, como la universidad o la formación profesional de grado superior, y para su desarrollo personal y profesional.",
+      "image": "/img/mañara.png"
+    },
+    {
+      "degree": "GRADO SUPERIOR CONSTRUCCIÓN Y OBRA CIVIL (2018-2020)",
+      "university": "IES Carmen Laffón(San José de la Rinconada,Sevilla)",
+      "description": "El Grado Superior en Construcción y Obra Civil es una formación profesional que capacita para planificar, gestionar y supervisar proyectos de construcción y obra civil. Durante el curso, los estudiantes adquieren conocimientos en diseño estructural, topografía, materiales de construcción,etc...",
+      "image": "/img/laffon.png"
+    },
+    {
+      "degree": "GRADO SUPERIOR DESARROLLO DE APLICACIONES WEB(2020-2024)",
+      "university": "Santa Joaquina de Vedruna(San Bernardo,Sevilla)",
+      "description": "El Grado Superior en Desarrollo de Aplicaciones Web es una formación profesional que capacita para diseñar, desarrollar e implementar aplicaciones web dinámicas y funcionales. Durante el curso, los estudiantes adquieren conocimientos en lenguajes de programación como HTML, CSS, JavaScript,etc...",
+      "image": "/img/vedruna.png"
+      
+    }
+  
+  ],
+  "skills": [
+    {
+      "name": "Angular",
+      "image": "/img/angular.png"
+
+    },
+    {
+      "name": "React",
+      "image": "/img/react.png"
+    },
+    {
+      "name": "PostgreSQL",
+      "image": "/img/postgreb.png"
+    }
+  
+  ],
+  "experiences":[
+    {
+      "name": "Intern at Emvisesa, where I will collaborate in the management of projects related to public housing and urban planning. My duties included reporting, data analysis and document management, as well as supporting the technical team in project planning and monitoring. This experience allowed me to gain practical skills in a professional environment.",
+      "image": "/img/estrella.png"
+    },
+    {
+      "name": "Laborer in a company in Alcalá del Río, where I participated in tasks related to the construction and maintenance of infrastructure. My responsibilities included handling basic tools, supporting the execution of works and ensuring compliance with workplace safety regulations. This experience allowed me to develop practical skills, teamwork and adaptation to a dynamic and demanding environment.",
+      "image": "/img/estrella.png"
+    },
+    {
+      "name": "Administrative assistant in a logistics company in SevilleI worked as an administrative assistant in a logistics company, where I performed functions such as delivery note management, inventory control and customer service",
+      "image": "/img/estrella.png"
+    },
+    {
+      "name": "Operator in a metal products factory in Dos HermanasI was an operator in a metal products factory, in charge of tasks such as the assembly of parts, quality control and basic maintenance of machinery.",
+      "image": "/img/estrella.png"
+    }
+  ]
+
+
+  
+
+   
+    
+}
+  
