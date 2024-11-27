@@ -1,0 +1,60 @@
+{
+  "name": "Jose Antonio Vázquez",
+  "about": "A passionate web developer with skills in JavaScript, Node.js, and Astro. I'm always looking to learn and improve my skills through practical projects.",
+  "studies": [
+    {
+      "degree": "HIGH SCHOOL (2016-2018)",
+      "university": "IES Miguel de Mañara (San José de la Rinconada, Seville)",
+      "description": "High School is a post-compulsory educational stage that prepares students for higher studies, such as university or higher vocational training, and for their personal and professional development.",
+      "image": "/img/mañara.png"
+    },
+    {
+      "degree": "HIGHER DEGREE IN CONSTRUCTION AND CIVIL ENGINEERING (2018-2020)",
+      "university": "IES Carmen Laffón (San José de la Rinconada, Seville)",
+      "description": "The Higher Degree in Construction and Civil Engineering is a vocational training program that prepares students to plan, manage, and supervise construction and civil engineering projects. During the course, students acquire knowledge in structural design, topography, construction materials, etc.",
+      "image": "/img/laffon.png"
+    },
+    {
+      "degree": "HIGHER DEGREE IN WEB APPLICATION DEVELOPMENT (2020-2024)",
+      "university": "Santa Joaquina de Vedruna (San Bernardo, Seville)",
+      "description": "The Higher Degree in Web Application Development is a vocational training program that prepares students to design, develop, and implement dynamic and functional web applications. During the course, students acquire knowledge in programming languages such as HTML, CSS, JavaScript, etc.",
+      "image": "/img/vedruna.png"
+    }
+  ], 
+  "skills": [
+    {
+      "name": "Angular",
+      "image": "/img/angular.png"
+
+    },
+    {
+      "name": "React",
+      "image": "/img/react.png"
+    },
+    {
+      "name": "PostgreSQL",
+      "image": "/img/postgreb.png"
+      
+    }
+  
+  ],
+  "experiences":[
+    {
+      "name": "Becario en Emvisesa bajo la supervisión de un ingeniera de sistemas llamada Silvia , donde colaboré en la gestión de proyectos relacionados con la vivienda pública y el urbanismo. Mis funciones incluían la elaboración de informes, análisis de datos y gestión documental, además de apoyar al equipo técnico en la planificación y seguimiento de proyectos. Esta experiencia me permitió adquirir habilidades prácticas en un entorno profesional.",
+      "image": "/img/estrella.png"
+    },
+    {
+      "name": "Peón en una empresa en Alcalá del Río bajo la supervisión de un ingeniero de construcción llamado Francisco, donde participé en tareas relacionadas con la construcción y mantenimiento de infraestructuras. Mis responsabilidades incluían el manejo de herramientas básicas, apoyo en la ejecución de obras y aseguramiento del cumplimiento de las normativas de seguridad en el trabajo. Esta experiencia me permitió desarrollar habilidades prácticas, trabajo en equipo y adaptación a un entorno dinámico y exigente.",
+      "image": "/img/estrella.png"
+    },
+    {
+      "name": "Auxiliar administrativo en una empresa de logística en Sevilla bajo la supervisión de un gerente llamado Miguel, donde trabajé como auxiliar administrativo en una empresa de logística, donde desempeñé funciones como la gestión de albaranes, control de inventarios y atención al cliente",
+      "image": "/img/estrella.png"
+    },
+    {
+      "name": "Operario en una fábrica de productos metálicos en Dos Hermanas bajo la supervisión de un operario llamado Juan, donde trabaje como  operario en una fábrica de productos metálicos, encargándome de tareas como el ensamblaje de piezas, control de calidad y mantenimiento básico de maquinaria.",
+      "image": "/img/estrella.png"
+    }
+  ]
+  
+}
