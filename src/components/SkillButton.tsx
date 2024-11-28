@@ -22,9 +22,28 @@ interface SkillButtonProps {
 }
 
 const SkillButton: React.FC<SkillButtonProps> = ({ initialSkills }) => {
-  const [skills] = useState<Skill[]>(initialSkills);
+  const nextSkills: Skill[] = [
+    { name: 'Astro', image: '/img/astro.png' },
+    { name: 'Tailwind CSS', image: '/img/tailwind.png' },
+    { name: 'Java', image: '/img/java.png' },
+  ];
+
+  const [skills, setSkills] = useState<Skill[]>(initialSkills);
+  const [previousSkills, setPreviousSkills] = useState<Skill[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isNextSkills, setIsNextSkills] = useState<boolean>(false); // Nuevo estado para controlar la dirección
+
+  // Función para cambiar entre las habilidades
+  const toggleSkills = () => {
+    if (isNextSkills) {
+      setSkills(previousSkills); // Restauramos las habilidades iniciales
+    } else {
+      setPreviousSkills(skills); // Guardamos las habilidades actuales
+      setSkills(nextSkills); // Cambiamos a las siguientes habilidades
+    }
+    setIsNextSkills(!isNextSkills); // Cambiamos el estado para indicar qué habilidades estamos mostrando
+  };
 
   // Función para obtener proyectos por tecnología
   const fetchProjectsBySkill = async (tech: string) => {
@@ -76,6 +95,29 @@ const SkillButton: React.FC<SkillButtonProps> = ({ initialSkills }) => {
             <p className="text-lg font-semibold">{skill.name}</p>
           </button>
         ))}
+      </div>
+
+      {/* Botón para cambiar habilidades */}
+      <div className="flex justify-center mt-6">
+        <button
+          className="bg-blue-500 text-white p-3 rounded-full hover:bg-blue-600 transition duration-300"
+          onClick={toggleSkills}
+        >
+          <svg
+            className="w-6 h-6 transform transition-all duration-300"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d={isNextSkills ? 'M19 9l-7 7-7-7' : 'M5 15l7-7 7 7'} // Cambiar la dirección de la flecha
+            />
+          </svg>
+        </button>
       </div>
 
       {/* Sección de proyectos */}
