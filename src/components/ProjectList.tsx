@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'; 
 
-// Definimos el tipo para el proyecto
 interface Project {
     id: number;
     name: string;
@@ -10,54 +9,39 @@ interface Project {
 }
 
 const Projects = () => {
-    const [page, setPage] = useState(0); // Página inicial
-    const [posts, setPosts] = useState<Project[]>([]); // Proyectos de la página actual
-    const [totalPages, setTotalPages] = useState(0); // Total de páginas disponibles
-    const [searchTerm, setSearchTerm] = useState(''); // Término de búsqueda
+    const [page, setPage] = useState(0);
+    const [posts, setPosts] = useState<Project[]>([]);
+    const [totalPages, setTotalPages] = useState(0);
+    const [searchTerm, setSearchTerm] = useState('');
 
-    // URL de la API
     const url: string = "http://localhost:8080/api/v1/projects";
 
-    // Hacemos la petición cuando cambie la página o el término de búsqueda
     useEffect(() => {
         peti(page, searchTerm);
     }, [page, searchTerm]);
 
-    // Función para hacer la petición a la API usando el endpoint de búsqueda por nombre
     const peti = async (p = 0, search = '') => {
-        if (search && search.length < 3) return;
+        if (search && search.length < 3) return; // Evita búsquedas demasiado cortas
+
+        // Si hay búsqueda, ajusta la URL de la petición
         const requestUrl = search
-            ? `${url}/${search}`
-            : `${url}?size=3&page=${p}`;
+            ? `${url}/${search}?page=${p}&size=3` // Agrega paginación en la búsqueda
+            : `${url}?page=${p}&size=3`; // Paginación normal
 
         const response = await fetch(requestUrl);
         const data = await response.json();
 
         if (search) {
-            const project = data.data ? {
-                id: data.data.id,
-                name: data.data.name,
-                description: data.data.description,
-                start_date: data.data.start_date,
-            } : null;
-            setPosts(project ? [project] : []);
-            setTotalPages(1);
+            setPosts(data.content || []); // Proyectos de la búsqueda
+            setTotalPages(data.totalPages || 1); // Total de páginas en la búsqueda
         } else {
-            setPosts(data.content.map((project: any) => ({
-                id: project.id,
-                name: project.name,
-                description: project.description,
-                start_date: project.start_date,
-            })) || []);
-            setTotalPages(data.totalPages || 1);
+            setPosts(data.content || []); // Proyectos de la página actual
+            setTotalPages(data.totalPages || 1); // Total de páginas en la paginación normal
         }
     };
 
-    // Función para eliminar un proyecto
     const handleDelete = async (id: number) => {
-        const response = await fetch(`${url}/${id}`, {
-            method: 'DELETE',
-        });
+        const response = await fetch(`${url}/${id}`, { method: 'DELETE' });
 
         if (response.ok) {
             setPosts(posts.filter(project => project.id !== id));
@@ -88,26 +72,23 @@ const Projects = () => {
 
     return (
         <>
-            {/* Barra de búsqueda centrada */}
             <div className="mb-6 flex justify-center">
                 <input
                     type="text"
                     placeholder="Buscar por nombre"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    onKeyDown={(e) => e.key === 'Enter' && peti(page, searchTerm)} // Búsqueda al presionar "Enter"
+                    onKeyDown={(e) => e.key === 'Enter' && peti(page, searchTerm)}
                     className="w-full max-w-xs p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
                 />
             </div>
 
-            {/* Lista de proyectos */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {posts.map((project) => (
                     <ProjectCard key={project.id} project={project} test={true} />
                 ))}
             </div>
 
-            {/* Botones de navegación con transiciones */}
             <div className="mt-6 flex justify-center items-center space-x-4">
                 <button
                     onClick={() => setPage(page - 1)}
@@ -118,7 +99,6 @@ const Projects = () => {
                     Página anterior
                 </button>
 
-                {/* Número de página actual con diseño personalizado */}
                 <div className="flex items-center justify-center bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold text-lg rounded-full w-12 h-12 shadow-md transform transition-transform duration-300 hover:scale-110">
                     {page + 1}
                 </div>
